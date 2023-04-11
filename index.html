@@ -6,21 +6,30 @@
     <script>
        var scene = new THREE.Scene(); 
         var camera = new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000) 
-        camera.position.z = 5;
+        camera.position.z = 25;
+        camera.position.y = 5;
         var renderer = new THREE.WebGLRenderer({antialias: true});
         renderer.setClearColor("aqua"); 
         renderer.setSize(window.innerWidth,window.innerHeight); 
         document.body.appendChild(renderer.domElement); 
 
-var geometry = new THREE.BoxGeometry(1, 1, 1)
-var material = new THREE.MeshLambertMaterial({color: "white"})
-  var nyancat = new  new THREE.Mesh(geometry, material)
-  scene.add(nyancat)
+        var totalCubes = 100;
+        for(var i=0; i<Math.sqrt(totalCubes); i++){
+          for(var j=0; j<Math.sqrt(totalCubes); j++){
+            var geometry = new THREE.BoxGeometry(1, 1, 1)
+            var material = new THREE.MeshLambertMaterial({color: "white"})
+              var nyancat = new THREE.Mesh(geometry, material)
+              scene.add(nyancat)
+              nyancat.position.x = i;
+              nyancat.position.z = j;
+          }
+        }
    
         var render = function() {
           requestAnimationFrame(render);
           renderer.render(scene, camera); 
         }
+        render()
     </script>
   </body>
 </html>
