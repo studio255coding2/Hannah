@@ -13,7 +13,7 @@
         renderer.setSize(window.innerWidth,window.innerHeight); 
         document.body.appendChild(renderer.domElement); 
 
-        var totalCubes = 100;
+        var totalCubes = 150;
         for(var i=0; i<Math.sqrt(totalCubes); i++){
           for(var j=0; j<Math.sqrt(totalCubes); j++){
             var geometry = new THREE.BoxGeometry(1, 1, 1)
@@ -24,12 +24,22 @@
               nyancat.position.z = j;
           }
         }
-   
+   var flamethrower = new THREE.PointLight(0xFFFFFF, 1, 500)
+   flamethrower.position.set(0, 10, 0)
+   scene.add(flamethrower)
+
+
         var render = function() {
           requestAnimationFrame(render);
           renderer.render(scene, camera); 
         }
-        render()
+        render();
+
+      $(document.body).keydown(function(evt){
+        if(evt.keyCode==38)
+        var direction = new THREE.Vector3();
+        camera.getWorldDirection
+      })
     </script>
   </body>
 </html>
