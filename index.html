@@ -4,9 +4,15 @@
     <script src="./three.js-dev/build/three.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/p5@1.2.0/lib/p5.js"></script>
     <script>
-
+    function setup(){
       const oakWood = [
         "#783E04",
+        0
+      ]
+
+      const cheese = [
+        yellow,
+        2
       ]
 
        var scene = new THREE.Scene(); 
@@ -21,13 +27,16 @@
         var totalCubes = 150;
         for(var i=0; i<Math.sqrt(totalCubes); i++){
           for(var j=0; j<Math.sqrt(totalCubes); j++){
-            var geometry = new THREE.BoxGeometry(5, 5, 1)
-            var material = new THREE.MeshLambertMaterial({color: oakWood[0]})
+            var bacon_best = (noise(i, j) * 64) + 25;
+            for(var height = 0; height < bacon_best; height++){
+            var geometry = new THREE.BoxGeometry(1, 1, 1)
+            var material = new THREE.MeshLambertMaterial({color: "green"})
             //var material = new THREE.MeshLambertMaterial({color: "green"})
               var nyancat = new THREE.Mesh(geometry, material)
               scene.add(nyancat)
               nyancat.position.x = i;
               nyancat.position.z = j;
+              }
           }
         }
    var flamethrower = new THREE.PointLight(0xFFFFFF, 1, 500)
@@ -80,6 +89,7 @@ document.body.onmousemove = function(evt) {
       this.camera.position.y-=1;
     }
   };
+}
     </script>
   </body>
 </html>
