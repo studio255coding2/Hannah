@@ -4,6 +4,11 @@
     <script src="./three.js-dev/build/three.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/p5@1.2.0/lib/p5.js"></script>
     <script>
+
+      const oakWood = [
+        "#783E04",
+      ]
+
        var scene = new THREE.Scene(); 
         var camera = new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000) 
         camera.position.z = 25;
@@ -16,8 +21,9 @@
         var totalCubes = 150;
         for(var i=0; i<Math.sqrt(totalCubes); i++){
           for(var j=0; j<Math.sqrt(totalCubes); j++){
-            var geometry = new THREE.BoxGeometry(1, 1, 1)
-            var material = new THREE.MeshLambertMaterial({color: "white"})
+            var geometry = new THREE.BoxGeometry(5, 5, 1)
+            var material = new THREE.MeshLambertMaterial({color: oakWood[0]})
+            //var material = new THREE.MeshLambertMaterial({color: "green"})
               var nyancat = new THREE.Mesh(geometry, material)
               scene.add(nyancat)
               nyancat.position.x = i;
