@@ -27,7 +27,7 @@
         var totalCubes = 150;
         for(var i=0; i<Math.sqrt(totalCubes); i++){
           for(var j=0; j<Math.sqrt(totalCubes); j++){
-            for(var height = 0; height <= Math.ceil((noise(i*0.05, height*0.05, j*0.05) * 64) + 25); height++){
+            for(var height = 0; height <= Math.ceil((noise(i*0.05, height*0.05, j*0.05) * 25) + 1); height++){
             var geometry = new THREE.BoxGeometry(1, 1, 1)
             var material = new THREE.MeshLambertMaterial({color: "green"})
             //var material = new THREE.MeshLambertMaterial({color: "green"})
@@ -48,8 +48,22 @@
           requestAnimationFrame(render);
           renderer.render(scene, camera); 
         }
+        var raycaster = new THREE.Raycaster();
+        var bedrock = new THREE.Vector3(0, -1, 0);
+        var render = function() {
+        raycaster.set(camera.position, bedrock)
+        const intersects = raycaster.intersectObjects(scene.children);
+        if(intersect.length > 0 && intersects[0].distance > 2){
+          camera.position.y-=0.2;
+        }
+        requestAnimationFrame(render);
+        renderer.render(scene, camera)
+        }
         render();
-
+          var render = function() {
+            requestAnimationFrame(render);
+            renderer.render(scene, camera);
+          }
       
         
 
