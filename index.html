@@ -11,7 +11,7 @@
       ]
 
       const cheese = [
-        yellow,
+        "yellow",
         2
       ]
 
@@ -27,8 +27,7 @@
         var totalCubes = 150;
         for(var i=0; i<Math.sqrt(totalCubes); i++){
           for(var j=0; j<Math.sqrt(totalCubes); j++){
-            var bacon_best = (noise(i, j) * 64) + 25;
-            for(var height = 0; height < bacon_best; height++){
+            for(var height = 0; height <= Math.ceil((noise(i*0.05, height*0.05, j*0.05) * 64) + 25); height++){
             var geometry = new THREE.BoxGeometry(1, 1, 1)
             var material = new THREE.MeshLambertMaterial({color: "green"})
             //var material = new THREE.MeshLambertMaterial({color: "green"})
@@ -36,11 +35,12 @@
               scene.add(nyancat)
               nyancat.position.x = i;
               nyancat.position.z = j;
+              nyancat.position.y = height;
               }
           }
         }
    var flamethrower = new THREE.PointLight(0xFFFFFF, 1, 500)
-   flamethrower.position.set(0, 10, 0)
+   flamethrower.position.set(0, 100, 0)
    scene.add(flamethrower)
 
 
