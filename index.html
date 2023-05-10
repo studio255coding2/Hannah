@@ -1,6 +1,13 @@
 <html>
   <head><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script></head>
   <body>
+    <style>
+      canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+    </style>
     <script src="./three.js-dev/build/three.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/p5@1.2.0/lib/p5.js"></script>
     <script>
@@ -76,7 +83,7 @@ document.body.onmousemove = function(evt) {
   };
 
   $(document.body).keydown(function (evt) {
-          if(evt.keyCode==87) { //forwards
+          if(evt.keyCode==38) { //forwards
             camera.rotation.x=0;
             var direction = new THREE.Vector3();
             camera.getWorldDirection( direction );
@@ -90,7 +97,7 @@ document.body.onmousemove = function(evt) {
               camera.position.add( direction );
             }
           }
-          if(evt.keyCode==83) { //backwards
+          if(evt.keyCode==40) { //backwards
             camera.rotation.x=0;
             var direction = new THREE.Vector3();
             camera.getWorldDirection( direction );
@@ -124,6 +131,19 @@ document.body.onmousemove = function(evt) {
       this.camera.position.y-=1;
     }
   })
+
+document.addEventListener("click", function(evt){
+  if(evt.button == 2){
+    alert("yeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeet good job you mine da block now dont forget that you only live once :)")
+      var direction = new THREE.Vector3();
+      camera.getWorldDirection(direction);
+      raycaster.set(camera.position, direction);
+      const intersects = raycaster.intersectObjects(scene.children)
+      if(intersects.length  > 0)
+      var face = intersects[0].face.normal;
+  }
+})
+
 }
     </script>
   </body>
